@@ -23,7 +23,8 @@ try {
 
 // CORS when consuming Medusa from admin
 const ADMIN_CORS =
-  process.env.ADMIN_CORS || "http://localhost:7000,http://localhost:7001";
+  process.env.ADMIN_CORS || "const ADMIN_CORS = process.env.ADMIN_CORS || 
+  "/http:\\/\\/localhost:700\\d+$/";
 
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
@@ -37,6 +38,7 @@ const REDIS_URL =
 const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
+  '@medusajs/admin',
   // To enable the admin plugin, uncomment the following lines and run `yarn add @medusajs/admin`
   // {
   //   resolve: "@medusajs/admin",
