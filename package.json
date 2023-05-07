@@ -18,9 +18,10 @@
     "heroku-postbuild": "medusa migrations run",
     "prepare": "npm run build",
     "build": "babel src -d dist --extensions \".ts,.js\""
-},
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.21.4",
+    "@medusajs/admin": "^4.0.0",
     "@medusajs/cache-inmemory": "^1.8.4",
     "@medusajs/cache-redis": "^1.8.4",
     "@medusajs/event-bus-local": "^1.9.1",
