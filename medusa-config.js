@@ -43,6 +43,16 @@ const plugins = [
   //     autoRebuild: true,
   //   },
   // },
+  {
+    resolve: `medusa-file-spaces`,
+    options: {
+      spaces_url: process.env.SPACE_URL,
+      bucket: process.env.SPACE_BUCKET,
+      endpoint: process.env.SPACE_ENDPOINT,
+      access_key_id: process.env.SPACE_ACCESS_KEY_ID,
+      secret_access_key: process.env.SPACE_SECRET_ACCESS_KEY,
+    },
+  },
 ];
 
 const modules = {
@@ -62,14 +72,18 @@ const modules = {
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
 const projectConfig = {
-  DATABASE_URL: DATABASE_URL,
+  database_url: DATABASE_URL,
   // database_database: "./medusa-db.sql",
   database_type: "postgres",
   store_cors: STORE_CORS,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  redis_url: REDIS_URL
-}
+  redis_url: REDIS_URL,
+  database_extra:
+    process.env.NODE_ENV !== "development"
+      ? { ssl: { rejectUnauthorized: false } }
+      : {},
+};
 
 if (DATABASE_URL && DATABASE_TYPE === "postgres") {
   projectConfig.database_url = DATABASE_URL;
