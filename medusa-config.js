@@ -43,6 +43,7 @@ const plugins = [
     /** @type {import('@medusajs/admin').PluginOptions} */
     options: {
       autoRebuild: true,
+      serve: true,
     },
   },
   {
